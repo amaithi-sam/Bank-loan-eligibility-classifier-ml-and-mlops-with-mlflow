@@ -7,3 +7,6 @@ matplotlib
 seaborn 
 dvc 
 joblib
+scikit-learn 
+pytest 
+tox
