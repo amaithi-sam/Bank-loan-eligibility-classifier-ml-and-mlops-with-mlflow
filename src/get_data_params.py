@@ -3,9 +3,10 @@ import yaml
 import pandas as pd 
 import argparse 
 
+
 def read_params(config_path):
     '''
-    Reads the params.yaml file for parameters and return a dictionary with parameters and it's values
+    Reads the params.yaml file  and return a dictionary with parameters and it's values
     '''
     with open(config_path) as yaml_file:
         config = yaml.safe_load(yaml_file)
