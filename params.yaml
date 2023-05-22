@@ -1,2 +1,21 @@
 base:
-  
+  project: banking_prediction
+  random_seed: 42
+  target_column: y 
+
+data_source:
+  local_data_source: dataset_raw/banking.csv
+
+split_data:
+  train_data_path: dataset_processed/train_bank_data.csv
+  test_data_path: dataset_processed/test_bank_data.csv 
+  test_size: 0.2 
+
+classifier:
+  RandomForestClassifier:
+    params:
+
+
+model_dir: model_dir
+
+
