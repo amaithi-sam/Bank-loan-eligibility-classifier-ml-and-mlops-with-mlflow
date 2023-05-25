@@ -6,3 +6,5 @@ MLFlow Model Serving Live Demo.ipynb
 .ipynb_checkpoints
 
 .vscode
+
+Titanic_Model_With_Pipeline_CustomTransformer.ipynb
