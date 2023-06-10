@@ -4,7 +4,11 @@ base:
   target_column: y 
 
 data_source:
-  local_data_source: dataset_raw/banking.csv
+  local_data_source: data/dataset_raw/banking.csv
+  preprocessed_data_source: data/dataset_processed/banking_processed.csv
+
+pipeline:
+  preprocessor_path: model_dir/Preprocessor/Preprocessor.pkl
 
 split_data:
   train_data_path: dataset_processed/train_bank_data.csv

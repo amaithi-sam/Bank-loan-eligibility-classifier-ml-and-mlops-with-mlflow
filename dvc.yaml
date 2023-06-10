@@ -1,8 +1,16 @@
 stages:
   Get_data:
-    cmd: python src/get_data.py --config=params.yaml 
+    cmd: python src/get_dataframe.py --config=params.yaml 
     deps:
-      - src/get_data.py
-      - dataset_raw/banking.csv
+      - src/get_dataframe.py
+      - data/dataset_raw/banking.csv
 
+  Preprocessing_data:
+    cmd: python3 src/preprocessing.py --config=params.yaml 
+    deps:
+      - src/get_dataframe.py
+      - src/preprocessing.py
+      - data/dataset_raw/banking.csv
+      - model_dir/Preprocessor/Preprocessor.pkl
+  
   

@@ -1,0 +1,11 @@
+schema: '2.0'
+stages:
+  Get_data:
+    cmd: python src/get_data_params.py --config=params.yaml
+    deps:
+    - path: data/dataset_raw/banking.csv
+      md5: 8b0c5a4ecea3001568546f0bdc654bf0
+      size: 4882918
+    - path: src/get_data_params.py
+      md5: 70a6053b91ddbbef6c13db9d18f6200b
+      size: 780
