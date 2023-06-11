@@ -32,7 +32,7 @@ def preprocessing(config_path):
 
     processed_data = processor.fit_transform(df)
 
-    processed_data.to_csv(processed_data_path, sep=",", index=True)
+    processed_data.to_csv(processed_data_path, sep=",", index=False)
 
 
 if __name__ == "__main__":

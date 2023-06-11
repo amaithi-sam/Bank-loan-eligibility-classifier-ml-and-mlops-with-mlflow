@@ -37,7 +37,7 @@ mlflow ui
 
 2. Set the MLflow tracking uri (within code section).
     
-    mlflow.set_tracking_uri("http://localhost:5000")
+    `mlflow.set_tracking_uri("http://localhost:5000")`
 
 
 You can also follow the official documentation for more information on backend database for model registry
