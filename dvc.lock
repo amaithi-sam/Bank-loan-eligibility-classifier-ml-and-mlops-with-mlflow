@@ -1,14 +1,14 @@
 schema: '2.0'
 stages:
   Get_data:
-    cmd: python src/get_dataframe.py --config=params.yaml
+    cmd: python3 src/get_dataframe.py --config=params.yaml
     deps:
     - path: data/dataset_raw/banking.csv
       md5: 8b0c5a4ecea3001568546f0bdc654bf0
       size: 4882918
     - path: src/get_dataframe.py
-      md5: 70a6053b91ddbbef6c13db9d18f6200b
-      size: 780
+      md5: 752d6b887afc1710a00b324c79d441d6
+      size: 795
   Preprocessing_data:
     cmd: python3 src/preprocessing.py --config=params.yaml
     deps:
@@ -19,8 +19,22 @@ stages:
       md5: 5a949ff86e80f01dfc43231e4d87647f
       size: 1917
     - path: src/get_dataframe.py
-      md5: 70a6053b91ddbbef6c13db9d18f6200b
-      size: 780
+      md5: 752d6b887afc1710a00b324c79d441d6
+      size: 795
     - path: src/preprocessing.py
       md5: abb5904e4b77e2205222dd0466db3064
       size: 1214
+  Train_and_Evalute:
+    cmd: python3 src/train_and_eval.py --config=params.yaml
+    deps:
+    - path: data/dataset_processed/banking_processed.csv
+      md5: cf8e767c037749e10e962446563a9ae2
+      size: 676886
+    - path: src/get_dataframe.py
+      md5: 752d6b887afc1710a00b324c79d441d6
+      size: 795
+      isexec: true
+    - path: src/model_training_and_hyperParameter_tuning.py
+      md5: e7e95d152a74ca9af78237476bf3932e
+      size: 1546
+      isexec: true

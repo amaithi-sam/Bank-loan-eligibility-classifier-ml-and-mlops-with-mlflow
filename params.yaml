@@ -1,7 +1,7 @@
 base:
   project: banking_prediction
-  random_seed: 42
-  target_column: y 
+  test_size: 0.2
+  random_state: 42
 
 data_source:
   local_data_source: data/dataset_raw/banking.csv
@@ -10,20 +10,27 @@ data_source:
 pipeline:
   preprocessor_path: model_dir/Preprocessor/Preprocessor.pkl
 
-split_data:
-  train_data_path: dataset_processed_split/train_bank_data.csv
-  test_data_path: dataset_processed_split/test_bank_data.csv 
-  test_size: 0.2 
-
 classifier:
   RandomForestClassifier:
     params:
+      
+metrics_path:
+  roc_auc_plot_path: src/roc_auc_curve.png
+  confusion_matrix_path: src/confusion_matrix.png
 
 
-model_dir: model_dir
+model_dir: model_dir/tuned_model/model_final.pkl
 
 
-ml_flow:
-  remote_server_uri: http://0.0.0.0:1234
+ml_flow_config:
+  remote_server_uri: http://localhost:5000
+
+  experiment_name: Experiment 
+  run_name: ML Run 
+
+  registered_model_name: Banking_Classifier
+
+
+  
 
 

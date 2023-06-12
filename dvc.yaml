@@ -1,6 +1,6 @@
 stages:
   Get_data:
-    cmd: python src/get_dataframe.py --config=params.yaml 
+    cmd: python3 src/get_dataframe.py --config=params.yaml 
     deps:
       - src/get_dataframe.py
       - data/dataset_raw/banking.csv
@@ -13,4 +13,9 @@ stages:
       - data/dataset_raw/banking.csv
       - model_dir/Preprocessor/Preprocessor.pkl
   
-  
+  Train_and_Evalute:
+    cmd: python3 src/train_and_eval.py --config=params.yaml
+    deps:
+      - src/get_dataframe.py
+      - data/dataset_processed/banking_processed.csv
+      - src/model_training_and_hyperParameter_tuning.py
