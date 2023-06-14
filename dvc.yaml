@@ -1,21 +1,39 @@
 stages:
-  Get_data:
-    cmd: python3 src/get_dataframe.py --config=params.yaml 
-    deps:
-      - src/get_dataframe.py
-      - data/dataset_raw/banking.csv
-
-  Preprocessing_data:
-    cmd: python3 src/preprocessing.py --config=params.yaml 
+  # 1.get_data:
+  #   cmd: python src/get_dataframe.py --config=params.yaml 
+  #   deps:
+  #     - src/get_dataframe.py
+  #     - data/dataset_raw/banking.csv
+    
+  # preprocessing_data:
+  #   cmd: python src/preprocessing.py --config=params.yaml 
+  #   deps:
+  #     - src/get_dataframe.py
+  #     - src/preprocessing.py
+  #     - data/dataset_raw/banking.csv
+  #     - model_dir/Preprocessor/Preprocessor.pkl
+  #     - 1.get_data
+  #   outs:
+  #     - data/dataset_processed/banking_processed.csv
+  
+  preprocess_train_and_evalute:
+    cmd: 
+      - python src/preprocessing.py --config=params.yaml
+      - python src/train_and_eval.py --config=params.yaml
     deps:
       - src/get_dataframe.py
       - src/preprocessing.py
       - data/dataset_raw/banking.csv
       - model_dir/Preprocessor/Preprocessor.pkl
-  
-  Train_and_Evalute:
-    cmd: python3 src/train_and_eval.py --config=params.yaml
-    deps:
-      - src/get_dataframe.py
-      - data/dataset_processed/banking_processed.csv
+
+      # - src/get_dataframe.py
+      # - data/dataset_processed/banking_processed.csv
       - src/model_training_and_hyperParameter_tuning.py
+    outs:
+      - data/dataset_processed/banking_processed.csv
+      
+
+  model_to_production:
+    cmd: python src/ml_flow_log_production.py --config=params.yaml
+    deps:
+      - src/ml_flow_log_production.py

@@ -30,6 +30,8 @@ ml_flow_config:
 
   registered_model_name: Banking_Classifier
 
+  production_model_path: production_model/production_model.pkl
+
 
   
 

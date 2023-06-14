@@ -38,3 +38,49 @@ stages:
       md5: e7e95d152a74ca9af78237476bf3932e
       size: 1546
       isexec: true
+  stage_model_to_production:
+    cmd: python src/ml_flow_log_production.py --config=params.yaml
+    deps:
+    - path: src/ml_flow_log_production.py
+      md5: e209bef209607002a6e7c0a68a584e3c
+      size: 1767
+  1.get_data:
+    cmd: python src/get_dataframe.py --config=params.yaml
+    deps:
+    - path: data/dataset_raw/banking.csv
+      md5: 8b0c5a4ecea3001568546f0bdc654bf0
+      size: 4882918
+    - path: src/get_dataframe.py
+      md5: 752d6b887afc1710a00b324c79d441d6
+      size: 795
+  preprocess_train_and_evalute:
+    cmd:
+    - python src/preprocessing.py --config=params.yaml
+    - python src/train_and_eval.py --config=params.yaml
+    deps:
+    - path: data/dataset_raw/banking.csv
+      md5: 8b0c5a4ecea3001568546f0bdc654bf0
+      size: 4882918
+    - path: model_dir/Preprocessor/Preprocessor.pkl
+      md5: 5a949ff86e80f01dfc43231e4d87647f
+      size: 1917
+    - path: src/get_dataframe.py
+      md5: 752d6b887afc1710a00b324c79d441d6
+      size: 795
+    - path: src/model_training_and_hyperParameter_tuning.py
+      md5: e7e95d152a74ca9af78237476bf3932e
+      size: 1546
+    - path: src/preprocessing.py
+      md5: abb5904e4b77e2205222dd0466db3064
+      size: 1214
+    outs:
+    - path: data/dataset_processed/banking_processed.csv
+      md5: 1948748cb74dbb387ee92308f3e194c9
+      size: 2324976
+      isexec: true
+  model_to_production:
+    cmd: python src/ml_flow_log_production.py --config=params.yaml
+    deps:
+    - path: src/ml_flow_log_production.py
+      md5: 70c0b874f8d46e237ce42535148ad77a
+      size: 1820
