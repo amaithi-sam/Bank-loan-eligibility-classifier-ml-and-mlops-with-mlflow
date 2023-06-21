@@ -16,15 +16,17 @@ stages:
   #   outs:
   #     - data/dataset_processed/banking_processed.csv
   
-  preprocess_train_and_evalute:
+  preprocess_train_and_evalute_model_to_production:
     cmd: 
       - python src/preprocessing.py --config=params.yaml
       - python src/train_and_eval.py --config=params.yaml
+      - python src/ml_flow_log_production.py --config=params.yaml
     deps:
       - src/get_dataframe.py
       - src/preprocessing.py
       - data/dataset_raw/banking.csv
       - model_dir/Preprocessor/Preprocessor.pkl
+      - src/ml_flow_log_production.py
 
       # - src/get_dataframe.py
       # - data/dataset_processed/banking_processed.csv
@@ -33,7 +35,7 @@ stages:
       - data/dataset_processed/banking_processed.csv
       
 
-  model_to_production:
-    cmd: python src/ml_flow_log_production.py --config=params.yaml
-    deps:
-      - src/ml_flow_log_production.py
+  # model_to_production:
+  #   cmd: python src/ml_flow_log_production.py --config=params.yaml
+  #   deps:
+  #     - src/ml_flow_log_production.py

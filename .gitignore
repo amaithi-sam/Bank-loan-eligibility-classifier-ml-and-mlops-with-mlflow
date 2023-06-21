@@ -6,3 +6,7 @@ MLFlow Model Serving Live Demo.ipynb
 
 .vscode
 
+__pycache__
+
+test.ipynb
+test.py

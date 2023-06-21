@@ -23,14 +23,14 @@ model_dir: model_dir/tuned_model/model_final.pkl
 
 
 ml_flow_config:
-  remote_server_uri: http://localhost:5000
+  remote_server_uri: http://localhost:5001
 
   experiment_name: Experiment 
   run_name: ML Run 
 
   registered_model_name: Banking_Classifier
 
-  production_model_path: production_model/production_model.pkl
+  production_model_path: prediction_service/production_model.pkl
 
 
   

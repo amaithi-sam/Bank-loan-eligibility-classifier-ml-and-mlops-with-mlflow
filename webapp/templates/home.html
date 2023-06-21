@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sam's Banking Prediction</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <style>
+      html, body {
+      min-height: 100%;
+      }
+      body, div, form, input, select, textarea, p { 
+      padding: 0;
+      margin: 0;
+      outline: none;
+      font-family: Roboto, Arial, sans-serif;
+      font-size: 14px;
+      color: #666;
+      line-height: 22px;
+      }
+      h1 {
+      position: absolute;
+      margin: 0;
+      font-size: 32px;
+      color: #fff;
+      z-index: 2;
+      }
+      .testbox {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: inherit;
+      padding: 20px;
+      }
+      form {
+      width: 100%;
+      padding: 20px;
+      border-radius: 6px;
+      background: #fff;
+      box-shadow: 0 0 30px 0 #8ebf42; 
+      }
+      .banner {
+      position: relative;
+      height: 210px;
+      background-image: url("/uploads/media/default/0001/01/a3df023f124a8bec3b213347404fe0a7318161de.jpeg");  
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      }
+      .banner::after {
+      content: "";
+      background-color: rgba(0, 0, 0, 0.5); 
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      }
+      p.top-info {
+      margin: 10px 0;
+      }
+      input, select, textarea {
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      }
+      input {
+      width: calc(30% - 10px);
+      padding: 5px;
+      }
+      select {
+      width: 30%;
+      padding: 7px 0;
+      background: transparent;
+      }
+      
+      .item:hover p, .item:hover i, .question:hover p, .question label:hover, input:hover::placeholder {
+      color: #8ebf42;
+      }
+      .item input:hover, .item select:hover, .item textarea:hover {
+        
+      border: 1px solid transparent;
+      box-shadow: 0 0 8px 0 #8ebf42;
+      color: #8ebf42;
+      }
+      .item {
+      position: relative;
+      margin: 10px 0;
+      }
+      
+      
+      .question span {
+      margin-left: 30px;
+      }
+      
+      .btn-block {
+      margin-top: 10px;
+      text-align: center;
+      }
+      button {
+      width: 150px;
+      padding: 10px;
+      border: none;
+      border-radius: 5px; 
+      background: #8ebf42;
+      font-size: 16px;
+      color: #fff;
+      cursor: pointer;
+      }
+      button:hover {
+      background: #82b534;
+      }
+      @media (min-width: 568px) {
+      .name-item, .city-item {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      }
+      /* .name-item input, .city-item input {
+      width: calc(50% - 20px);
+      }
+      .city-item select {
+      width: calc(50% - 8px);
+      } */
+      }
+    </style>
+  </head>
+  <body >
+
+
+    
+    <div class="testbox">
+      <form action="/" method="POST">
+        <div class="banner">
+          <h1>Sam's Banking Prediction</h1>
+        </div>
+
+        <nav class="navbar navbar-expand-lg navbar-light shadow fixed-top" style="background-color: #e3f2fd;">
+          
+          <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                  <li class="nav-item active">
+                      <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="https://github.com/amaithi-sam/ml_ops-winequality_project">source code</a>
+                  </li>
+              </ul>
+          </div>
+      </nav>
+      <div>
+
+
+
+
+        <br>
+
+        <div class="item">
+          <p>Age</p>
+          <div class="name-item">
+            <input type="number" name="age" placeholder="min 17 max 98" min="17" max="98"/>
+          </div>
+        </div>
+
+        <div class="item">
+            <p>Job</p>
+
+            <select name="job" id="2">
+            <option value="blue-collar">blue-collar</option>
+            <option value="technician">technician</option>
+            <option value="management">management</option>
+            <option value="services">services</option>
+            <option value="retired">retired</option>
+            <option value="admin">admin</option>
+            <option value="housemaid">housemaid</option>
+            <option value="unemployed">unemployed</option>
+            <option value="entrepreneur">entrepreneur</option>
+            <option value="self-employed">self-employed</option>
+            <option value="student">student</option>
+            <option value="unknown">unknown</option>
+           
+            </select>
+        </div>
+
+        <div class="item">
+            <p>Marital Status</p>
+
+            <select name="marital_status">
+            <option value="married">married</option>
+            <option value="single">single</option>
+            <option value="divorced">divorced</option>
+            <option value="unknown">unknown</option>
+                       
+            </select>
+        </div>
+
+        <div class="item">
+            <p>Education</p>
+
+            <select name="education">
+            <option value="professional.course">professional.course</option>
+            <option value="university.degree">university.degree</option>
+            <option value="high.school">high.school</option>
+            <option value="basic">basic.9y</option>
+            <option value="basic">basic.6y</option>
+            <option value="basic">basic.4y</option>
+            <option value="illiterate">illiterate</option>
+            <option value="unknown">unknown</option>
+                       
+            </select>
+        </div>
+
+        <div class="item">
+            <p>Default</p>
+
+            <select name="default"> 
+            <option value="yes">yes</option>
+            <option value="no">no</option>
+            <option value="unknown">unknown</option>
+                                   
+            </select>
+        </div>
+        
+        
+        <div class="item">
+            <p>Housing</p>
+
+            <select name="housing">
+            <option value="yes">yes</option>
+            <option value="no">no</option>
+            <option value="unknown">unknown</option>
+                                   
+            </select>
+        </div>
+
+        <div class="item">
+            <p>Loan</p>
+
+            <select name="load">
+            <option value="yes">yes</option>
+            <option value="no">no</option>
+            <option value="unknown">unknown</option>
+                                   
+            </select>
+        </div>
+
+        <div class="item">
+            <p>Contact</p>
+
+            <select name="contact">
+            <option value="cellular">cellular</option>
+            <option value="telephone">telephone</option>
+                                              
+            </select>
+        </div>
+
+        <div class="item">
+            <p>Month</p>
+
+            <select name="month">
+            <option value="mar">March</option>
+            <option value="apr">April</option>
+            <option value="may">May</option>
+            <option value="jun">June</option>
+            <option value="jul">July</option>
+            <option value="aug">August</option>
+            <option value="sep">September</option>
+            <option value="oct">October</option>
+            <option value="nov">November</option>
+            <option value="dec">December</option>
+                       
+            </select>
+        </div>
+
+        <div class="item">
+            <p>Day of Week</p>
+
+            <select name="day_of_week">
+            <option value="mon">Monday</option>
+            <option value="tue">Tuesday</option>
+            <option value="wed">Wednesday</option>
+            <option value="thu">Thursday</option>
+            <option value="fri">Friday</option>
+                                   
+            </select>
+        </div>
+
+        <div class="item">
+            <p>Duration</p>
+            <div class="name-item">
+              <input type="number" name="duration" id="duration" placeholder="min 0 max 4918" min="0" max="4918"/>
+            </div>
+          </div>
+
+         
+        <div class="item">
+        <p>Campaign</p>
+        <div class="name-item">
+            <input type="number" name="campaign" id="campaign" placeholder="min 1 max 56" min="1" max="56"/>
+        </div>
+        </div>
+
+
+        <div class="item">
+            <p>PDays</p>
+            <div class="name-item">
+                <input type="number" name="pdays" id="pdays" placeholder="min 0 max 999" min="0" max="999"/>
+            </div>
+            </div>
+
+        <div class="item">
+            <p>Previous</p>
+            <div class="name-item">
+                <input type="number" name="previous" id="previous" placeholder="min 0 max 7" min="0" max="7"/>
+            </div>
+        </div>
+
+
+        <div class="item">
+            <p>Poutcome</p>
+
+            <select name="poutcome">
+            <option value="nonexistent">Nonexistent</option>
+            <option value="success">Success</option>
+            <option value="failure">Failure</option>
+    
+            </select>
+        </div>
+
+        <div class="item">
+            <p>Emp_var_rate</p>
+            <div class="name-item">
+                <input type="number" name="emp_var_rate" id="emp_var_rate" placeholder="min -3.4 & max 1.4" min="-3.4" max="1.4" step="0.1"/>
+            </div>
+        </div>
+
+        <div class="item">
+            <p>Cons_price_idx</p>
+            <div class="name-item">
+                <input type="number" name="cons_price_idx" id="cons_price_idx" placeholder="min 92.201 & max 94.767" min="92.201" max="94.767"/>
+            </div>
+        </div>
+
+        <div class="item">
+            <p>Euribor3m</p>
+            <div class="name-item">
+                <input type="number" name="euribor3m" id="euribor3m" placeholder="min 0.634 & max 5.045" min="0.634" max="5.045"/>
+            </div>
+        </div>
+
+        <div class="item">
+            <p>Nr_Employed</p>
+            <div class="name-item">
+                <input type="number" name="nr_employed" id="nr_employed" placeholder="min 4963.6 & max 5228.1" min="4963.6" max="5228.1"/>
+            </div>
+        </div>
+
+                
+        <div class="btn-block">
+          
+          <button type="submit">Predict</button>
+          
+        </div>
+    
+
+          <div class="item">
+            <p>Prediction</p>
+            <div class="name-item">
+              <textarea>{{ response }}</textarea>
+              <!-- <input readonly name="pred" id="pred" value={{response}} /> -->
+              
+
+              <!-- <textarea readonly class="form-control" id="exTextarea" rows="5">{{ response }}</textarea> -->
+            </div>
+          </div>
+            
+        
+    </form>
+    </div>
+
+    
+  </body>
+</html>

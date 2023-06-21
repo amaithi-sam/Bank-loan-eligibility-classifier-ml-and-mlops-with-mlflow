@@ -62,8 +62,8 @@ stages:
       md5: 8b0c5a4ecea3001568546f0bdc654bf0
       size: 4882918
     - path: model_dir/Preprocessor/Preprocessor.pkl
-      md5: 5a949ff86e80f01dfc43231e4d87647f
-      size: 1917
+      md5: cd03eda1372f1e53c5c53d92914c1527
+      size: 1661
     - path: src/get_dataframe.py
       md5: 752d6b887afc1710a00b324c79d441d6
       size: 795
@@ -71,12 +71,12 @@ stages:
       md5: e7e95d152a74ca9af78237476bf3932e
       size: 1546
     - path: src/preprocessing.py
-      md5: abb5904e4b77e2205222dd0466db3064
-      size: 1214
+      md5: 884c07d67e3661c1874f8e65d3e64e41
+      size: 1246
     outs:
     - path: data/dataset_processed/banking_processed.csv
-      md5: 1948748cb74dbb387ee92308f3e194c9
-      size: 2324976
+      md5: 80e1ec6d9f98837041c19a4790bc0a5d
+      size: 2341483
       isexec: true
   model_to_production:
     cmd: python src/ml_flow_log_production.py --config=params.yaml
@@ -84,3 +84,32 @@ stages:
     - path: src/ml_flow_log_production.py
       md5: 70c0b874f8d46e237ce42535148ad77a
       size: 1820
+  preprocess_train_and_evalute_model_to_production:
+    cmd:
+    - python src/preprocessing.py --config=params.yaml
+    - python src/train_and_eval.py --config=params.yaml
+    - python src/ml_flow_log_production.py --config=params.yaml
+    deps:
+    - path: data/dataset_raw/banking.csv
+      md5: 8b0c5a4ecea3001568546f0bdc654bf0
+      size: 4882918
+    - path: model_dir/Preprocessor/Preprocessor.pkl
+      md5: ba16e6c499e429dedeb5119f14b4a4ef
+      size: 1523
+    - path: src/get_dataframe.py
+      md5: 752d6b887afc1710a00b324c79d441d6
+      size: 795
+    - path: src/ml_flow_log_production.py
+      md5: 70c0b874f8d46e237ce42535148ad77a
+      size: 1820
+    - path: src/model_training_and_hyperParameter_tuning.py
+      md5: e7e95d152a74ca9af78237476bf3932e
+      size: 1546
+    - path: src/preprocessing.py
+      md5: 26ab940bc69d1c072384c07b603a612e
+      size: 1309
+    outs:
+    - path: data/dataset_processed/banking_processed.csv
+      md5: 22eaf2dd41f4d53cf36a9875f21d5993
+      size: 2322161
+      isexec: true

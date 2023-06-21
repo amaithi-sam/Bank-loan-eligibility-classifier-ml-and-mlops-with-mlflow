@@ -15,22 +15,29 @@ set_config(transform_output="pandas")
 # from . import get_data_params.read_params, get_data_params.get_data
 import argparse
 
-def edu_trans(df):
+def edu_trans_and_missing_vals(df):
     df['education'] = df['education'].replace(['basic.4y', 'basic.6y', 'basic.9y'], 'basic')
+    df = df.dropna(axis=0)
     return df 
 
 def preprocessing(config_path):
 
     # cd = CustomException()
     config = read_params(config_path)
-    df = get_data(config_path)
+    
     processed_data_path = config["data_source"]["preprocessed_data_source"]
 
     preprocessor_path = config['pipeline']['preprocessor_path']
 
+
+    df = get_data(config_path)
+
+    df1 = edu_trans_and_missing_vals(df)
+
+
     processor = joblib.load(preprocessor_path)
 
-    processed_data = processor.fit_transform(df)
+    processed_data = processor.fit_transform(df1)
 
     processed_data.to_csv(processed_data_path, sep=",", index=False)
 

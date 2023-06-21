@@ -18,7 +18,7 @@ mlflow ui
 
 2. Start MLflow tracking server using MySQL as a backend tracking store.
 
-` mlflow server \
+`mlflow server \
    --backend-store-uri  mysql+pymysql://root@localhost/mlflow_tracking_database \ 
    --default-artifact-root  file:/./mlruns \
    -h 0.0.0.0 -p 5000`
