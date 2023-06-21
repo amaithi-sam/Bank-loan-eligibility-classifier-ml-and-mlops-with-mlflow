@@ -32,7 +32,7 @@ mlflow ui
 
 1. Start MLflow tracking server using sqlite as a backend tracking store.
 
-`mlflow server --backend-store-uri sqlite:///mlflow.db --default-artifact-root ./artifacts --host 0.0.0.0 --port 5000`
+`mlflow server --backend-store-uri sqlite:///mlflow.db --default-artifact-root ./artifacts --host 0.0.0.0 --port 5001`
 
 
 2. Set the MLflow tracking uri (within code section).

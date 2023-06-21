@@ -31,7 +31,7 @@ def index1():
             #     response = prediction.api_response(request.json)
             #     return jsonify(response)
         except Exception as e:
-            print(e)
+            # print(e)
             # error ={"error": "Something went wrong try again"}
             error = {"error": e}
             return render_template("404.html", error=error)
@@ -40,6 +40,6 @@ def index1():
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5100, debug=False)
+    app.run(host="0.0.0.0", port=5100, debug=True)
 
 

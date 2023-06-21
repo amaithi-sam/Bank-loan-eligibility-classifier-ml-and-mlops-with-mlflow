@@ -8,7 +8,7 @@ data_source:
   preprocessed_data_source: data/dataset_processed/banking_processed.csv
 
 pipeline:
-  preprocessor_path: model_dir/Preprocessor/Preprocessor.pkl
+  preprocessor_path: model_dir/Preprocessor/Preprocessor.joblib
 
 classifier:
   RandomForestClassifier:
