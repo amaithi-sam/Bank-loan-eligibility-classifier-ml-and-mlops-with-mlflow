@@ -11,4 +11,4 @@ scikit-learn
 pytest 
 tox
 imblearn
-yaml
+pyyaml
